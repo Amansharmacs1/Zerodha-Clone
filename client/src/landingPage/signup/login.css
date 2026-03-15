@@ -1,0 +1,39 @@
+.login-wrapper{
+    height:100vh;
+    background:#eef5ff;
+}
+
+.login-card{
+    width:420px;
+    border-radius:12px;
+    padding:20px;
+}
+
+.login-card h2{
+    color:#387ed1;
+}
+
+.login-card h4{
+    color:#387ed1;
+}
+
+.login-btn{
+    background:#387ed1;
+    border:none;
+    padding:10px;
+    font-weight:600;
+}
+
+.login-btn:hover{
+    background:#2c6bb5;
+}
+
+.forgot-link{
+    font-size:14px;
+    text-decoration:none;
+    color:#387ed1;
+}
+
+.forgot-link:hover{
+    text-decoration:underline;
+}

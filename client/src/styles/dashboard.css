@@ -1,0 +1,870 @@
+body {
+  margin: 0;
+  padding: auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.dash-dashboard-container {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  /* align-items: center; */
+  box-sizing: border-box;
+}
+
+.dash-content {
+  flex-basis: 68%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  padding: 3% 2%;
+}
+
+.dash-funds {
+  width: 100%;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.dash-funds p {
+  font-size: 0.8rem;
+  color: rgb(179, 179, 179);
+  margin-right: 8px;
+}
+
+.dash-btn {
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 2px;
+  color: #fff;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
+.dash-btn-green {
+  background: #4caf50;
+}
+
+.dash-btn-blue {
+  background: #4184f3;
+}
+
+.dash-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 5%;
+}
+
+.dash-col {
+  flex-basis: 48%;
+  text-align: left;
+}
+
+.dash-col span {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.dash-section-icon {
+  transform: scale(0.8);
+  color: rgb(66, 56, 56);
+  padding: 0;
+  margin: 0;
+  margin-right: 10px;
+}
+
+.dash-col span p {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.dash-table {
+  border: 1px solid #ddd;
+  padding: 5% 8%;
+}
+
+.dash-table .dash-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dash-table .dash-data > * {
+  margin-bottom: 5%;
+}
+
+.dash-table .dash-data p:first-child {
+  font-size: 1rem;
+  color: rgb(151, 151, 151);
+}
+
+.dash-imp {
+  font-size: 1.5rem;
+  color: #313131;
+}
+
+.dash-colored {
+  color: #4184f3;
+}
+
+.dash-table hr {
+  border: none;
+  background: #d1d1d1;
+  height: 0.5px;
+  margin-bottom: 5%;
+}
+
+.dash-commodity {
+  padding: 2% 8%;
+  text-align: center;
+}
+
+.dash-commodity p {
+  margin-bottom: 10%;
+  color: #c9c9c9;
+}
+
+/* sudo selectors */
+.dash-btn-blue:hover {
+  background: #74a7fa;
+}
+
+.dash-btn-green:hover {
+  background: #7bdd7f;
+}
+
+.dash-title {
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: rgb(71, 71, 71);
+  margin-bottom: 2%;
+}
+
+.dash-order-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dash-order-table tr {
+  border-top: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.dash-order-table th {
+  text-align: right;
+  padding: 15px 10px;
+  color: rgb(145, 145, 145);
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+
+.dash-order-table tr th:first-child,
+.dash-order-table tr td:first-child {
+  text-align: left;
+}
+
+.dash-order-table tr th:nth-child(1),
+.dash-order-table tr th:nth-child(4) {
+  border-right: 1px solid #f1f1f1;
+}
+
+.dash-order-table tr td:nth-child(1),
+.dash-order-table tr td:nth-child(4) {
+  border-right: 1px solid #f1f1f1;
+}
+
+.dash-order-table tr td:last-child {
+  font-size: 0.6rem;
+}
+
+.dash-order-table td {
+  padding: 10px 10px;
+  text-align: right;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: rgb(73, 73, 73);
+}
+
+.dash-align-left {
+  text-align: left;
+}
+
+.dash-order-table td.dash-profit {
+  color: rgb(72, 194, 55);
+}
+
+.dash-order-table td.dash-loss {
+  color: rgb(250, 118, 78);
+}
+
+.dash-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5%;
+}
+
+.dash-col {
+  flex-basis: 33%;
+}
+
+.dash-col h5 {
+  font-size: 1.8rem;
+  color: rgb(71, 71, 71);
+  font-weight: 300;
+}
+
+.dash-col h5 span {
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.dash-col p {
+  font-size: 0.8rem;
+  color: rgb(153, 153, 153);
+  font-weight: 300;
+  margin-top: 2%;
+}
+
+.dash-row .dash-col:last-child h5 {
+  color: rgb(72, 194, 55);
+}
+
+/* sudo selector */
+.dash-item:hover {
+  cursor: pointer;
+}
+
+.dash-menu-container {
+  flex-basis: 68%;
+  height: 100%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dash-logo {
+  width: 30px;
+  height: 20px;
+}
+
+.dash-menus {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.dash-menus ul {
+  list-style-type: none;
+}
+
+.dash-menus li {
+  display: inline-block;
+  margin-right: 30px;
+  text-decoration: none;
+}
+
+.dash-menu {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgb(70, 70, 70);
+}
+
+.dash-menu.dash-selected {
+  color: rgb(245, 104, 52);
+}
+
+hr {
+  border-left: 0.8px solid rgb(243, 242, 242);
+  height: 30px;
+}
+
+.dash-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: 20px;
+}
+
+.dash-profile .dash-avatar {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  position: relative;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: rgb(221, 139, 221);
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  text-align: center;
+  display: flex;
+  background: rgb(252, 229, 252);
+  margin-right: 8px;
+}
+
+.dash-profile .dash-username {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+/* sudo selectors */
+
+.dash-menu:hover {
+  color: rgb(245, 104, 52);
+}
+
+.dash-profile:hover {
+  cursor: pointer;
+}
+
+.dash-profile:hover .dash-username {
+  cursor: pointer;
+  color: rgb(223, 91, 43);
+}
+
+.dash-orders {
+  width: 100%;
+  height: 90vh;
+}
+
+.dash-no-orders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dash-no-orders .dash-icon {
+  transform: scale(4);
+  color: rgb(173, 173, 173);
+  display: block;
+}
+
+.dash-no-orders p {
+  margin-top: 6%;
+  color: rgb(173, 173, 173);
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.dash-btn {
+  text-decoration: none;
+  background: rgb(77, 77, 248);
+  padding: 10px 20px;
+  border-radius: 2px;
+  color: #fff;
+  margin-top: 2%;
+}
+
+.dash-btn:hover {
+  background: rgb(110, 110, 253);
+}
+
+.dash-title {
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: rgb(71, 71, 71);
+  margin-bottom: 2%;
+}
+
+.dash-order-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dash-order-table tr {
+  border-top: 1px solid rgb(211, 211, 211);
+  border-bottom: 1px solid rgb(211, 211, 211);
+}
+
+.dash-order-table th {
+  text-align: right;
+  padding: 15px 10px;
+  color: rgb(145, 145, 145);
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+
+.dash-order-table tr th:first-child,
+.dash-order-table tr td:first-child {
+  text-align: left;
+}
+
+.dash-order-table tr td:first-child p {
+    background: rgb(255, 197, 197);
+    color: rgb(233, 120, 120);
+    width: 50%;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.dash-order-table tr td:last-child {
+  font-size: 0.6rem;
+}
+
+.dash-order-table td {
+  padding: 10px 10px;
+  text-align: right;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: rgb(73, 73, 73);
+}
+
+.dash-align-left {
+  text-align: left;
+}
+
+.dash-order-table td.dash-profit {
+  color: rgb(72, 194, 55);
+}
+
+.dash-order-table td.dash-loss {
+  color: rgb(250, 118, 78);
+}
+
+.dash-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5%;
+}
+
+.dash-col {
+  flex-basis: 33%;
+}
+
+.dash-col h5 {
+  font-size: 1.8rem;
+  color: rgb(71, 71, 71);
+  font-weight: 300;
+}
+
+.dash-col h5 span {
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.dash-col p {
+  font-size: 0.8rem;
+  color: rgb(153, 153, 153);
+  font-weight: 300;
+  margin-top: 2%;
+}
+
+.dash-row .dash-col:last-child h5 {
+  color: rgb(72, 194, 55);
+}
+
+/* sudo selector */
+.dash-item:hover {
+  cursor: pointer;
+}
+
+.dash-username h6 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(83, 83, 83);
+  margin-bottom: 20px;
+}
+
+.dash-divider {
+  border: none;
+  background: #d1d1d1;
+  height: 1px;
+  margin: 20px 0;
+  margin-bottom: 5%;
+}
+
+.dash-section {
+  padding-bottom: 2%;
+}
+
+.dash-section span {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.dash-section span p {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.dash-section-icon {
+  transform: scale(0.8);
+  color: rgb(112, 112, 112);
+  padding: 0;
+  margin: 0;
+  margin-right: 10px;
+}
+
+.dash-data {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.dash-data .dash-first h3 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: rgb(71, 71, 71);
+}
+
+.dash-data .dash-first p {
+  font-size: 0.8rem;
+  color: rgb(136, 136, 136);
+}
+
+.dash-data .dash-first small {
+  font-size: 0.8rem;
+  color: rgb(72, 194, 55);
+}
+
+.dash-data .dash-first .dash-profit {
+  color: rgb(72, 194, 55);
+}
+
+.dash-data hr {
+  border-left: 0.6px solid rgb(243, 242, 242);
+  height: 70px;
+}
+
+.dash-data .dash-second p {
+  font-size: 0.8rem;
+  color: rgb(136, 136, 136);
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
+.dash-data .dash-second p span {
+  display: inline;
+  margin-left: 5%;
+  font-size: 0.9rem;
+  color: rgb(100, 100, 100);
+}
+
+.dash-section hr {
+  margin-top: 6%;
+}
+
+.dash-topbar-container {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 0px 4px 2px rgb(236, 235, 235);
+  box-sizing: border-box;
+  z-index: 9;
+}
+
+.dash-indices-container {
+  flex-basis: 32%;
+  height: 100%;
+  padding: 10px 20px;
+  border-right: 1px solid rgb(224, 224, 224);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.dash-nifty {
+  flex-basis: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: -2;
+}
+
+.dash-sensex {
+  flex-basis: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.dash-nifty > *,
+.dash-sensex > * {
+  margin-right: 8px;
+}
+
+.dash-index {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: rgb(97, 97, 97);
+  white-space: nowrap;
+}
+
+.dash-index-points {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgb(223, 73, 73);
+}
+
+.dash-percent {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgb(146, 146, 146);
+}
+
+/* sudo selectors */
+.dash-index:hover {
+  cursor: pointer;
+}
+
+.dash-watchlist-container {
+  flex-basis: 32%;
+  height: 100%;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 4px 1px rgb(236, 235, 235);
+  overflow-y: auto;
+  position: relative;
+}
+
+.dash-search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+.dash-search {
+  width: 100%;
+  height: 6%;
+  border: none;
+  padding: 15px 20px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgb(241, 241, 241);
+  border-bottom: 0.8px solid rgb(235, 234, 234);
+}
+
+.dash-counts {
+  position: absolute;
+  right: 20px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgb(177, 177, 177);
+}
+
+.dash-list {
+  list-style-type: none;
+  padding-bottom: 12%;
+}
+
+.dash-list li {
+  border-bottom: 0.8px solid rgb(235, 234, 234);
+  padding: 12px 10px 12px 14px;
+  position: relative;
+}
+
+.dash-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 300;
+  font-size: 0.8rem;
+  position: relative;
+}
+
+.dash-item-info {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.dash-item-info > * {
+  margin-right: 8px;
+}
+
+.dash-item-info span:nth-child(1) {
+  color: rgb(141, 141, 141);
+  flex: 1;
+}
+
+.dash-item-info span:nth-child(2) {
+  color: rgb(223, 73, 73);
+  margin-right: 12px;
+  flex: 2;
+}
+
+.dash-item-info span:nth-child(3) {
+  color: rgb(223, 73, 73);
+  flex: 1;
+}
+
+.dash-actions {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  display: none;
+}
+
+.dash-actions span button {
+  width: 40px;
+  height: 30px;
+  border-radius: 4px;
+  text-align: center;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.dash-buy {
+  background-color: #4184f3;
+  color: #fff;
+  font-weight: 400;
+  font-size: 0.8rem;
+  border: 0.7px solid #4184f3;
+}
+
+.dash-sell {
+  background-color: #ff5722;
+  color: #fff;
+  font-weight: 400;
+  font-size: 0.8rem;
+  border: 0.7px solid #ff5722;
+}
+
+.dash-action {
+  background-color: #fff;
+  border: 0.7px solid #9b9b9b;
+}
+
+.dash-icon {
+  transform: scale(0.7);
+  color: rgb(65, 65, 65);
+}
+
+.dash-watchlist-number {
+  height: 6%;
+  width: 32%;
+  box-sizing: border-box;
+  position: fixed;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 1px;
+  padding: 20px 20px 20px 0;
+  left: 0;
+  border: 1px solid rgb(231, 231, 231);
+  z-index: 5;
+  background: #fff;
+}
+
+.dash-watchlist-number ul {
+  list-style-type: none;
+}
+
+.dash-watchlist-number ul li {
+  display: inline-block;
+  padding: 10px 20px;
+  border-right: 1px solid rgb(231, 231, 231);
+}
+
+.dash-watchlist-number ul li:nth-child(1) {
+  color: rgb(223, 73, 73);
+}
+
+.dash-down {
+  color: rgb(223, 73, 73);
+}
+
+.dash-up {
+  color: rgb(103, 201, 136);
+}
+
+.dash-settings {
+  transform: scale(0.8);
+  color: rgb(105, 105, 105);
+}
+
+/* sudo selectors */
+.dash-search:focus {
+  outline: none;
+}
+
+.dash-list li:hover {
+  cursor: move;
+  background-color: #f3f3f3;
+}
+
+.dash-list li:hover > .dash-actions {
+  display: flex;
+  cursor: move;
+}
+
+/* TODO */
+.dash-list li::before {
+  content: "";
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.dash-watchlist-number ul li:hover {
+  color: rgb(245, 104, 52);
+  cursor: pointer;
+  background: rgb(243, 243, 243);
+}
+
+.dash-settings:hover {
+  cursor: pointer;
+}
+
+.dash-action:hover {
+  background-color: rgb(212, 212, 212);
+}
+
+
+
+
+/* Default menu link */
+.menu {
+  color: #555;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.menu:hover {
+  color: #d84a4a;
+  background-color: rgba(216, 74, 74, 0.08);
+}
+
+/* Active link (selected page) */
+.selected {
+  color: #d84a4a;
+  font-weight: 600;
+  background-color: rgba(216, 74, 74, 0.12);
+}
