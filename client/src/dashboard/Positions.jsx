@@ -10,7 +10,7 @@ const Positions = () => {
   useEffect(() => {
     const fetchPositions = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/allPositions");
+        const res = await axios.get("https://zerodha-clone-1-nn61.onrender.com/allPositions");
         setAllPositions(res.data);
       } catch (error) {
         console.log("Backend not running or no data available",error);

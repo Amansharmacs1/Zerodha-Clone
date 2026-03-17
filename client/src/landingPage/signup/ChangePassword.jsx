@@ -38,7 +38,7 @@ function ChangePassword() {
     try {
 
       const response = await fetch(
-        `http://localhost:8000/user/change-password/${email}`,
+        `https://zerodha-clone-1-nn61.onrender.com/user/change-password/${email}`,
         {
           method: "POST",
           headers: {

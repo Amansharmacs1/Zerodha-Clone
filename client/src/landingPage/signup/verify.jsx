@@ -14,7 +14,7 @@ function Verify() {
       try {
 
         const res = await axios.post(
-          "http://localhost:8000/user/verify",
+          "https://zerodha-clone-1-nn61.onrender.com/user/verify",
           {},
           {
             headers: {

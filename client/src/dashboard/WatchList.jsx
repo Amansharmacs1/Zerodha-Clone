@@ -19,7 +19,7 @@ const WatchList = () => {
   useEffect(() => {
     const fetchHoldings = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/allHoldings");
+        const response = await axios.get("https://zerodha-clone-1-nn61.onrender.com/allHoldings");
         setHoldings(response.data);
       } catch (error) {
         console.error("Error fetching holdings", error);
