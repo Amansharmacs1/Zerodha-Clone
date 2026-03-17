@@ -38,7 +38,7 @@ function ChangePassword() {
     try {
 
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/user/change-password/${email}`,
+        `http://localhost:8000/user/change-password/${email}`,
         {
           method: "POST",
           headers: {

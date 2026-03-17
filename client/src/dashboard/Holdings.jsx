@@ -10,7 +10,7 @@ const Holdings = () => {
   useEffect(() => {
     const fetchHoldings = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/holdings`);
+        const res = await axios.get("http://localhost:8000/allHoldings");
         setAllHoldings(res.data);
       } catch (error) {
         console.log("Backend not running or no data available",error);

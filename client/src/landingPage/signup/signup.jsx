@@ -32,7 +32,7 @@ function Signup() {
 
     // Perform the signup request
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/register`, {
+      const response = await fetch("http://localhost:8000/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
