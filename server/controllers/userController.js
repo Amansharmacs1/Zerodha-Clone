@@ -46,7 +46,11 @@ export const registerUser = async (req, res) => {
 
         await newUser.save();   // 🔥 THIS WAS MISSING
 
-        await verifyMail(token, email);
+        const emailSent = await verifyMail(token, email);
+
+if (!emailSent) {
+  console.log("⚠️ Email not sent, but user created");
+}
 
         return res.status(201).json({
             success: true,

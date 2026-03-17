@@ -1,20 +1,17 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import "dotenv/config";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendOtpMail = async (email, otp) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
-      },
-    });
+    console.log("📩 Sending OTP via Resend to:", email);
 
-    const mailOptions = {
-      from: process.env.MAIL_USER,
+    const response = await resend.emails.send({
+      from: "onboarding@resend.dev", // ⚠️ keep this for now
       to: email,
       subject: "Password Reset OTP",
+      text: `Your OTP is ${otp}. Valid for 10 minutes.`,
       html: `
         <div style="font-family: Arial, sans-serif;">
           <h2>Password Reset Request</h2>
@@ -22,13 +19,15 @@ export const sendOtpMail = async (email, otp) => {
           <h1 style="letter-spacing: 5px;">${otp}</h1>
           <p>This OTP is valid for <b>10 minutes</b>.</p>
           <p>If you did not request this, please ignore this email.</p>
-        </div>`
-    };
+        </div>
+      `,
+    });
 
-    await transporter.sendMail(mailOptions);
+    console.log("✅ OTP email sent:", response);
 
-    console.log("OTP email sent successfully");
+    return true;
   } catch (error) {
-    console.error("Error sending OTP mail:", error.message);
+    console.error("❌ Resend OTP error:", error);
+    return false;
   }
 };

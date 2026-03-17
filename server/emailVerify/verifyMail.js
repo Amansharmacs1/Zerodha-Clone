@@ -1,44 +1,52 @@
-import nodemailer from "nodemailer";
-import 'dotenv/config'
-import fs from "fs"
-import path from "path"
-import { fileURLToPath } from "url"
-import handlebars from "handlebars"
+import { Resend } from "resend";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import handlebars from "handlebars";
+import "dotenv/config";
 
-const __filename=fileURLToPath(import.meta.url)
-const __dirname=path.dirname(__filename);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+export const verifyMail = async (token, email) => {
+  try {
+    console.log("📩 Sending email via Resend to:", email);
 
-export const verifyMail=async (token , email)=>{
+    // ✅ Safe template path
+    const templatePath = path.join(__dirname, "template.hbs");
 
-const emailTemplateSource=fs.readFileSync(
-    path.join(__dirname,"template.hbs"),
-    "utf-8"
-)
-
-const template=handlebars.compile(emailTemplateSource);
-const htmlToSend=template({token:encodeURIComponent(token)});
-
-    const transporter=nodemailer.createTransport({
-        service:"gmail",
-        auth:{
-            user:process.env.MAIL_USER,
-            pass:process.env.MAIL_PASS
-        }
-    })
-
-    const mailConfigurations={
-        from:process.env.MAIL_USER,
-        to:email,
-        subject:"Email Verification",
-        html:htmlToSend
+    if (!fs.existsSync(templatePath)) {
+      console.log("❌ Template file not found");
+      return false;
     }
 
-    transporter.sendMail(mailConfigurations,function(error,info){
-        if(error){
-            throw new Error(error);
-        }
-        console.log("Email sent successfully");
+    const emailTemplateSource = fs.readFileSync(templatePath, "utf-8");
+
+    const template = handlebars.compile(emailTemplateSource);
+
+    // ✅ Centralized frontend URL (VERY IMPORTANT)
+    const verifyUrl = `${process.env.FRONTEND_URL}/verify/${encodeURIComponent(token)}`;
+
+    const htmlToSend = template({
+      verifyUrl, // 👈 pass full URL instead of just token
     });
-}
+
+    const response = await resend.emails.send({
+      from: "Zerodha Clone <onboarding@resend.dev>", // ✅ better sender name
+      to: email,
+      subject: "Verify Your Email",
+      html: htmlToSend,
+      text: `Verify your email: ${verifyUrl}`, // ✅ dynamic link
+    });
+
+    console.log("✅ Email sent:", response?.id);
+
+    return true;
+
+  } catch (error) {
+    console.log("❌ Resend error:", error?.message);
+    return false;
+  }
+};
