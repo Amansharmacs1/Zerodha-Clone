@@ -14,7 +14,7 @@ function Verify() {
       try {
 
         const res = await axios.post(
-          "http://localhost:8000/user/verify",
+          `${process.env.REACT_APP_BACKEND_URL}/user/verify`,
           {},
           {
             headers: {

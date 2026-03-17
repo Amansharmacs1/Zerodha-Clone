@@ -10,7 +10,7 @@ const Positions = () => {
   useEffect(() => {
     const fetchPositions = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/allPositions");
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/positions`);
         setAllPositions(res.data);
       } catch (error) {
         console.log("Backend not running or no data available",error);

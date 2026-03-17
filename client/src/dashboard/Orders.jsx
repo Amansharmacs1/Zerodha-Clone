@@ -7,7 +7,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/orders");
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/orders`);
         console.log(res.data);   // 👈 add this
         setAllOrders(res.data);
       } catch (error) {

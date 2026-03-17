@@ -33,7 +33,7 @@ function VerifyOtp() {
     try {
 
       const response = await fetch(
-        `http://localhost:8000/user/verify-otp/${email}`,
+        `${process.env.REACT_APP_BACKEND_URL}/user/verify-otp/${email}`,
         {
           method: "POST",
           headers: {

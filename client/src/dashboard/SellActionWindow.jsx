@@ -12,7 +12,7 @@ const SellActionWindow = ({ uid }) => {
 
   const handleSellClick = async () => {
     try {
-      await axios.post("http://localhost:8000/sellOrder", {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/sellOrder`, {
         name: uid,
         qty: Number(stockQuantity),
         price: Number(stockPrice),

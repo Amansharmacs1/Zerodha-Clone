@@ -27,7 +27,7 @@ function ForgetPassword() {
     try {
 
       const response = await fetch(
-        "http://localhost:8000/user/forgot-password",
+        `${process.env.REACT_APP_BACKEND_URL}/user/forgot-password`,
         {
           method: "POST",
           headers: {
