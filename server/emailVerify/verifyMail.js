@@ -7,46 +7,43 @@ import "dotenv/config";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Fix __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const verifyMail = async (token, email) => {
   try {
-    console.log("📩 Sending email via Resend to:", email);
+    console.log("📩 Sending email to:", email);
+    console.log("🔑 TOKEN:", token);
 
-    // ✅ Safe template path
-    const templatePath = path.resolve("template.hbs");
+    const templatePath = path.join(__dirname, "template.hbs");
 
     if (!fs.existsSync(templatePath)) {
-      console.log("❌ Template file not found");
+      console.log("❌ Template not found:", templatePath);
       return false;
     }
 
-    const emailTemplateSource = fs.readFileSync(templatePath, "utf-8");
+    const source = fs.readFileSync(templatePath, "utf-8");
+    const template = handlebars.compile(source);
 
-    const template = handlebars.compile(emailTemplateSource);
-
-    // ✅ Centralized frontend URL (VERY IMPORTANT)
-    const verifyUrl = `${process.env.FRONTEND_URL}/verify/${encodeURIComponent(token)}`;
-
+    // ✅ PASS TOKEN (IMPORTANT)
     const htmlToSend = template({
-      verifyUrl, // 👈 pass full URL instead of just token
+      token,
     });
 
     const response = await resend.emails.send({
-      from: "Zerodha Clone <onboarding@resend.dev>", // ✅ better sender name
+      from: "onboarding@resend.dev",
       to: email,
       subject: "Verify Your Email",
       html: htmlToSend,
-      text: `Verify your email: ${verifyUrl}`, // ✅ dynamic link
+      text: `Verify: http://localhost:5173/verify/${token}`,
     });
 
-    console.log("✅ Email sent:", response?.id);
-
+    console.log("✅ Email sent:", response);
     return true;
 
   } catch (error) {
-    console.log("❌ Resend error:", error?.message);
+    console.log("❌ Error:", error.message);
     return false;
   }
 };

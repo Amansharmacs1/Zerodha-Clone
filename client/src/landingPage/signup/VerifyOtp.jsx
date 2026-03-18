@@ -33,7 +33,7 @@ function VerifyOtp() {
     try {
 
       const response = await fetch(
-        `https://zerodha-clone-1-nn61.onrender.com/user/verify-otp/${email}`,
+        `http://localhost:8000/user/verify-otp/${email}`,
         {
           method: "POST",
           headers: {

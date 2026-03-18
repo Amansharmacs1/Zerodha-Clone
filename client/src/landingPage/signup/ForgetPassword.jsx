@@ -27,7 +27,7 @@ function ForgetPassword() {
     try {
 
       const response = await fetch(
-        "https://zerodha-clone-1-nn61.onrender.com/user/forgot-password",
+        "http://localhost:8000/user/forgot-password",
         {
           method: "POST",
           headers: {

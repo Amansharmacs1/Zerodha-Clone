@@ -19,7 +19,6 @@ function ChangePassword() {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-
     const { name, value } = e.target;
 
     setFormData((prev) => ({
@@ -29,33 +28,45 @@ function ChangePassword() {
   };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
+
+    // ✅ Frontend validation
+    if (!formData.newPassword || !formData.confirmPassword) {
+      setIsError(true);
+      setMessage("All fields are required");
+      return;
+    }
+
+    if (formData.newPassword !== formData.confirmPassword) {
+      setIsError(true);
+      setMessage("Passwords do not match");
+      return;
+    }
 
     setLoading(true);
     setMessage("");
 
     try {
-
       const response = await fetch(
-        `https://zerodha-clone-1-nn61.onrender.com/user/change-password/${email}`,
+        `http://localhost:8000/user/change-password/${encodeURIComponent(email)}`, // ✅ correct route
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify(formData)
+          body: JSON.stringify({
+            newPassword: formData.newPassword,
+            confirmPassword: formData.confirmPassword // ✅ IMPORTANT FIX
+          })
         }
       );
 
       const data = await response.json();
 
       if (!response.ok) {
-
         setIsError(true);
-        setMessage(data.message);
+        setMessage(data.message || "Something went wrong");
         return;
-
       }
 
       setIsError(false);
@@ -66,20 +77,14 @@ function ChangePassword() {
       }, 2000);
 
     } catch (error) {
-
       setIsError(true);
       setMessage("Server error. Try again");
-
     } finally {
-
       setLoading(false);
-
     }
-
   };
 
   return (
-
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
 
       <div className="card shadow p-4" style={{ width: "420px" }}>
@@ -95,19 +100,16 @@ function ChangePassword() {
         <form onSubmit={handleSubmit}>
 
           {/* New Password */}
-
           <div className="mb-3">
             <label className="form-label fw-semibold">New Password</label>
 
             <div className="input-group">
-
               <input
                 type={showPassword ? "text" : "password"}
                 name="newPassword"
                 value={formData.newPassword}
                 onChange={handleChange}
                 className="form-control"
-                placeholder="Enter new password"
                 required
               />
 
@@ -118,12 +120,10 @@ function ChangePassword() {
               >
                 <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}></i>
               </button>
-
             </div>
           </div>
 
           {/* Confirm Password */}
-
           <div className="mb-3">
             <label className="form-label fw-semibold">Confirm Password</label>
 
@@ -133,7 +133,6 @@ function ChangePassword() {
               value={formData.confirmPassword}
               onChange={handleChange}
               className="form-control"
-              placeholder="Confirm new password"
               required
             />
           </div>
@@ -147,23 +146,15 @@ function ChangePassword() {
           </button>
 
           {message && (
-
-            <div
-              className={`text-center small mt-3 ${
-                isError ? "text-danger" : "text-success"
-              }`}
-            >
+            <div className={`text-center small mt-3 ${isError ? "text-danger" : "text-success"}`}>
               {message}
             </div>
-
           )}
 
         </form>
 
       </div>
-
     </div>
-
   );
 }
 

@@ -3,46 +3,39 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function Verify() {
-
   const { token } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("TOKEN:", token);
 
     const verifyEmail = async () => {
-
       try {
-
         const res = await axios.post(
-          "https://zerodha-clone-1-nn61.onrender.com/user/verify",
+          "http://localhost:8000/user/verify",
           {},
           {
             headers: {
-              Authorization: `Bearer ${token}`
-            }
+              Authorization: `Bearer ${token}`,
+            },
           }
         );
 
         if (res.data.success) {
-
           alert("Email verified successfully");
-
           navigate("/login");
-
         }
 
       } catch (error) {
-
         alert("Verification failed");
-
       }
-
     };
 
-    verifyEmail();
+    if (token) verifyEmail();
 
   }, [token, navigate]);
 
+  return <h2>Verifying...</h2>;
 }
 
 export default Verify;
