@@ -15,7 +15,7 @@ export const verifyMail = async (token, email) => {
     console.log("📩 Sending email via Resend to:", email);
 
     // ✅ Safe template path
-    const templatePath = path.join(__dirname, "template.hbs");
+    const templatePath = path.resolve("template.hbs");
 
     if (!fs.existsSync(templatePath)) {
       console.log("❌ Template file not found");
