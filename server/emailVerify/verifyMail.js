@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 // Configure transporter for Gmail
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 465, // SSL
+  port: 587, // SSL
   secure: true, // true for 465, false for 587
   auth: {
     user: process.env.MAIL_USER,      // your Gmail
