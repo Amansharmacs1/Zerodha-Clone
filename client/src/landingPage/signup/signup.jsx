@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useNavigate,Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-
 
 function Signup() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -28,9 +28,9 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log("Form Data:", formData);
+    setError("");
+    setSuccess("");
 
-    // Perform the signup request
     try {
       const response = await fetch("http://localhost:8000/user/register", {
         method: "POST",
@@ -40,17 +40,18 @@ function Signup() {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        const data = await response.json();
-        console.log("Signup successful:", data);
+        setSuccess(data.message || "Signup successful");
         navigate("/verify-email");
-        toast.success(data.message);
-       
       } else {
-        console.error("Signup failed");
+        setError(data.message || "Signup failed");
       }
+
     } catch (error) {
-      console.error("Error during signup:", error);
+      console.error("Error:", error);
+      setError("Something went wrong");
     } finally {
       setIsLoading(false);
     }
@@ -60,11 +61,25 @@ function Signup() {
     <div className="signup-wrapper d-flex align-items-center justify-content-center vh-100 bg-light">
       <div className="card shadow" style={{ width: "420px" }}>
         <h1 className="text-center text-primary fw-bold mb-2">
-          {" "}
           Create your account
         </h1>
+
         <div className="card-body p-4">
           <h3 className="text-center text-primary fw-bold mb-4">Sign up</h3>
+
+          {/* ✅ Error Message */}
+          {error && (
+            <p style={{ color: "red", textAlign: "center" }}>
+              {error}
+            </p>
+          )}
+
+          {/* ✅ Success Message */}
+          {success && (
+            <p style={{ color: "green", textAlign: "center" }}>
+              {success}
+            </p>
+          )}
 
           <div className="mb-3">
             <label className="form-label fw-semibold">Full Name</label>
@@ -120,17 +135,23 @@ function Signup() {
             </div>
           </div>
 
-          <button className="btn btn-primary w-100" onClick={handleSubmit}>
-            {isLoading ? <>Creating account...</> : "Signup"}
+          <button
+            className="btn btn-primary w-100"
+            onClick={handleSubmit}
+            disabled={isLoading}
+          >
+            {isLoading ? "Creating account..." : "Signup"}
           </button>
-        
 
-<p className="text-center mt-3 mb-0">
-  Already have an account?{" "}
-  <Link to="/login" className="text-primary fw-semibold text-decoration-none">
-    Login
-  </Link>
-</p>
+          <p className="text-center mt-3 mb-0">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="text-primary fw-semibold text-decoration-none"
+            >
+              Login
+            </Link>
+          </p>
         </div>
       </div>
     </div>

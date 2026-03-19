@@ -136,7 +136,6 @@ export const Verification = async (req, res) => {
     }
 };
 
-
 //login User
 export const loginuser=async (req,res)=>{
     try{
@@ -315,8 +314,6 @@ export const verifyOTP=async (req,res) => {
         })
     }
 }
-
-
 
 export const changePassword = async (req, res) => {
   try {
